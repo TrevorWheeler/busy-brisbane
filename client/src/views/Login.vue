@@ -31,6 +31,7 @@
                       v-model="email"
                     ></v-text-field>
                     <v-text-field
+                    type="password"
                       label="Password"
                       v-model="password"
                     ></v-text-field>
