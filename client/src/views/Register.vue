@@ -1,6 +1,5 @@
 <template>
   <div class="register">
-
     <v-container>
       <v-layout>
         <v-flex
@@ -8,7 +7,6 @@
           sm6
           offset-sm3
         >
-
           <div class="white elevation-2">
             <v-toolbar
               flat
@@ -27,11 +25,12 @@
                 >
                   <v-flex>
                     <v-text-field
+                      autocomplete="new-password"
                       label="Email"
                       v-model="email"
                     ></v-text-field>
                     <v-text-field
-                    type="password"
+                      type="password"
                       label="Password"
                       v-model="password"
                     ></v-text-field>
@@ -74,10 +73,12 @@ export default {
   methods: {
     async register() {
       try {
-        await AuthenticationService.register({
+        const response = await AuthenticationService.register({
           email: this.email,
           password: this.password
         });
+        this.$store.dispatch("setToken", response.data.token);
+        this.$store.dispatch("setUser", response.data.user);
       } catch (error) {
         this.error = error.response.data.error;
       }
