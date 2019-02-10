@@ -14,7 +14,7 @@
               class="cyan"
               dark
             >
-              <v-toolbar-title>Create Project</v-toolbar-title>
+              <v-toolbar-title>Edit Project</v-toolbar-title>
             </v-toolbar>
 
           </div>
@@ -61,7 +61,7 @@
             accept="image/*"
             @change="onFilePicked"
           >
- 
+
           <v-alert
             :value="error"
             type="error"
@@ -70,10 +70,10 @@
           >{{error}}
           </v-alert>
           <v-btn
-          :disabled="!formIsValid"
+            :disabled="!formIsValid"
             color="primary"
-            @click="create"
-          >Create</v-btn>
+            @click="save"
+          >Save Project</v-btn>
 
         </v-flex>
       </v-layout>
@@ -116,18 +116,33 @@ export default {
       required: value => !!value || "Required."
     };
   },
-      computed: {
-        formIsValid() {
-            return this.project.title !== null 
-        },
-    },
+  computed: {
+    formIsValid() {
+      return this.project.title !== null;
+    }
+  },
+
+  async mounted() {
+    try {
+      const projectId = this.$store.state.route.params.projectId;
+      this.project = (await ProjectsService.show(projectId)).data;
+    } catch (err) {
+      console.log(err);
+    }
+  },
   methods: {
-    async create() {
-      if (!this.formIsValid) {return}
+    async save() {
+      if (!this.formIsValid) {
+        return;
+      }
+       const projectId = this.$store.state.route.params.projectId;
       try {
-        await ProjectsService.post(this.project);
+        await ProjectsService.put(this.project);
         this.$router.push({
-          name: "projects"
+          name: "project",
+          params: {
+            projectId: projectId
+          }
         });
       } catch (err) {
         console.log(err);

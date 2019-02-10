@@ -5,6 +5,8 @@ import Login from "./views/Login.vue"
 import Register from "./views/Register.vue"
 import Projects from "./views/Projects.vue"
 import CreateProject from "./views/CreateProject.vue"
+import ViewProject from "./views/ViewProject.vue"
+import EditProject from "./views/EditProject.vue"
 Vue.use(Router);
 
 export default new Router({
@@ -34,6 +36,16 @@ export default new Router({
       path: "/projects/create",
       name: "projects-create",
       component: CreateProject
+    },
+    {
+      path: "/project/:projectId",
+      name: "project",
+      component: ViewProject
+    },
+    {
+      path: "/project/:projectId/edit",
+      name: "project-edit",
+      component: EditProject
     },
   ]
 });

@@ -12,6 +12,9 @@ module.exports = app => {
   app.post("/login", AuthenticationController.login);
 
   app.get("/projects", SongsController.index);
+
+  app.get("/projects/:projectId", SongsController.show);
   
   app.post("/projects", SongsController.post);
+  app.put("/projects/:songId", SongsController.put);
 };

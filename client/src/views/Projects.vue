@@ -18,7 +18,7 @@
             </v-toolbar>
           </div>
           <div
-            v-for="(project, index) in projects"
+            v-for="(projects, index) in projects"
             :key="index"
           >
             <v-card>
@@ -34,20 +34,20 @@
                     <v-card>
 
                       <v-img
-                        v-if="project.img !== null"
-                        :src="project.img"
+                        v-if="projects.img !== null"
+                        :src="projects.img"
                       >
                       </v-img>
                       <v-card-actions>
                         <span
                           class="headline black--text"
-                          v-text="project.title"
+                          v-text="projects.title"
                         ></span>
                         <v-spacer></v-spacer>
 
                         <v-btn
-                        icon
-                          @click="navigateTo({name: 'projects-create'})"
+                          icon
+                          @click="navigateTo({ name: 'project', params: { projectId: projects.id}})"
                         >
                           <v-icon>remove_red_eye</v-icon>
                         </v-btn>
@@ -65,54 +65,28 @@
         </v-flex>
       </v-layout>
     </v-container>
-     <v-btn
-        slot="action"
-        class="cyan"
-        fixed
-        bottom
-        right
-        fab
-        @click="navigateTo({name: 'projects-create'})"
-      >
-        <v-icon>add</v-icon>
-      </v-btn>
+    <v-btn
+      slot="action"
+      class="cyan"
+      fixed
+      bottom
+      right
+      fab
+      @click="navigateTo({name: 'projects-create'})"
+    >
+      <v-icon>add</v-icon>
+    </v-btn>
   </div>
 </template>
 
 <script>
 import ProjectsService from "@/services/ProjectsService";
 
-// import image2base64 from "image-to-base64";
 export default {
   data() {
     return {
       projects: null
     };
-  },
-
-  computed: {
-    // dataUrl() {
-    //   // console.log(this.projects.img)
-    //   // return 'data:image/jpeg;base64,' + btoa(
-    //   //     new Uint8Array(this.projects.img)
-    //   //     .reduce((data, byte) => data + String.fromCharCode(byte), '')
-    //   // );
-    //   var base64EncodedStr = btoa(
-    //     unescape(encodeURIComponent(this.projects[0].img))
-    //   );
-    //   console.log(base64EncodedStr);
-    // }
-    // dataUrl(file) {
-    //   console.log(file);
-    //   var reader = new FileReader();
-    //   reader.readAsDataURL(file);
-    //   reader.onload = function() {
-    //     console.log(reader.result);
-    //   };
-    //   reader.onerror = function(error) {
-    //     console.log("Error: ", error);
-    //   };
-    // }
   },
 
   async mounted() {
