@@ -4,9 +4,11 @@ import Home from "./views/Home.vue";
 import Login from "./views/Login.vue"
 import Register from "./views/Register.vue"
 import Projects from "./views/Projects.vue"
+import CreateProject from "./views/CreateProject.vue"
 Vue.use(Router);
 
 export default new Router({
+  mode: "history",
   routes: [
     {
       path: "/",
@@ -27,6 +29,11 @@ export default new Router({
       path: "/projects",
       name: "projects",
       component: Projects
+    },
+       {
+      path: "/projects/create",
+      name: "projects-create",
+      component: CreateProject
     },
   ]
 });

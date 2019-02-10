@@ -11,7 +11,23 @@
         dense
       >
         <v-divider light></v-divider>
+        <v-list-tile
+          @click="navigateTo({name: 'projects'})"
+          v-if="!$store.state.isUserLoggedIn"
+        >
+          <v-list-tile-content>
+            <v-list-tile-title>Projects</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
 
+        <v-list-tile
+          @click="navigateTo({name: 'projects-create'})"
+          v-if="!$store.state.isUserLoggedIn"
+        >
+          <v-list-tile-content>
+            <v-list-tile-title>+ project</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
         <v-list-tile
           @click="navigateTo({name: 'login'})"
           v-if="!$store.state.isUserLoggedIn"
@@ -48,12 +64,20 @@
       >
         <span>Ceramic</span>
         <span class="font-weight-light">Journal</span>
-      
+
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-toolbar-items>
-             <v-btn
+        <v-btn
+          v-if="$store.state.isUserLoggedIn"
+          class="hidden-sm-and-down"
+          flat
+          @click="navigateTo({name: 'projects-create'})"
+        >
+          <span>+ project</span>
+        </v-btn>
+        <v-btn
           v-if="$store.state.isUserLoggedIn"
           class="hidden-sm-and-down"
           flat
@@ -118,7 +142,7 @@ export default {
       this.$store.dispatch("setUser", null);
       this.$router.push({
         name: "home"
-      })
+      });
     }
   }
 };

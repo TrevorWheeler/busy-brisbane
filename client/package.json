@@ -9,7 +9,9 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "image-to-base64": "^2.0.1",
     "vue": "^2.5.22",
+    "vue-file-base64": "^1.0.2",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.0",
     "vuex": "^3.0.1",
