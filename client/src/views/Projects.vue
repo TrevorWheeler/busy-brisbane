@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import ProjectsService from "@/services/ProjectsService";
+import ProjectsService from "@/services/projectsService";
 
 export default {
   data() {
