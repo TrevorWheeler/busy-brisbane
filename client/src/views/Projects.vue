@@ -7,14 +7,18 @@
           sm6
           offset-sm3
         >
+                   <search/>
           <div class="white elevation-2">
+    
             <v-toolbar
               flat
               dense
               class="cyan"
               dark
             >
+         
               <v-toolbar-title>Projects</v-toolbar-title>
+            
             </v-toolbar>
           </div>
           <div
@@ -80,6 +84,7 @@
 </template>
 
 <script>
+import search from "@/components/Search.vue"
 import ProjectsService from "@/services/projectsService";
 
 export default {
@@ -88,7 +93,9 @@ export default {
       projects: null
     };
   },
-
+  components: {
+    search
+  },
   async mounted() {
     this.projects = (await ProjectsService.index()).data;
   },

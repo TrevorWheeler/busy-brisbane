@@ -1,14 +1,12 @@
 # ceramic-journal
-App to keep track of the ceramic artist process 
+App to keep track of the ceramic artist process (PostgreSQL, Vue, Node, Express)
 
-# PROJECT DEV SETUP
+# START POSTGRESQL
+$ sudo service postgresql start
 
-sudo service postgresql start
+# START EXPRESS SERVER FROM `SERVER` DIRECTORY WITH NODEMON
+$ nodemon
 
-cd server
-nodemon
-
-open new terminal in root
-cd client
-npm run serve
+# OPEN NEW TERMINAL WINDOW IN 'CLIENT' DIRECTORY AND RUN DEVELOPMENT SERVER
+$ npm run serve
 
