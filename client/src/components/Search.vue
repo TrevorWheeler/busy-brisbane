@@ -6,8 +6,6 @@
     dark
   >
     <v-text-field label="Search by title name." v-model="search">
-      
-
     </v-text-field>
   </v-toolbar>
 </template>
