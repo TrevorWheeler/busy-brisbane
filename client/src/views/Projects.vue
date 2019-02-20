@@ -7,18 +7,16 @@
           sm6
           offset-sm3
         >
-                   <search/>
+          <search class="mb-4" />
           <div class="white elevation-2">
-    
+
             <v-toolbar
               flat
               dense
               class="cyan"
               dark
             >
-         
               <v-toolbar-title>Projects</v-toolbar-title>
-            
             </v-toolbar>
           </div>
           <div
@@ -48,14 +46,12 @@
                           v-text="projects.title"
                         ></span>
                         <v-spacer></v-spacer>
-
                         <v-btn
                           icon
                           @click="navigateTo({ name: 'project', params: { projectId: projects.id}})"
                         >
                           <v-icon>remove_red_eye</v-icon>
                         </v-btn>
-
                         <v-btn icon>
                           <v-icon>favorite</v-icon>
                         </v-btn>
@@ -84,7 +80,7 @@
 </template>
 
 <script>
-import search from "@/components/Search.vue"
+import search from "@/components/Search.vue";
 import ProjectsService from "@/services/projectsService";
 
 export default {
@@ -96,12 +92,21 @@ export default {
   components: {
     search
   },
-  async mounted() {
-    this.projects = (await ProjectsService.index()).data;
-  },
+  // async mounted() {
+  //   this.projects = (await ProjectsService.index()).data;
+  // },
   methods: {
     navigateTo(route) {
       this.$router.push(route);
+    }
+  },
+
+  watch: {
+    "$route.query.search": {
+      immediate: true,
+      async handler (value) {
+        this.projects = (await ProjectsService.index(value)).data
+      }
     }
   }
 };

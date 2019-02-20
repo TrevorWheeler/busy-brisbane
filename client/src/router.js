@@ -13,6 +13,10 @@ export default new Router({
   mode: "history",
   routes: [
     {
+      path: "*",
+      redirect: "projects"
+    },
+    {
       path: "/",
       name: "home",
       component: Home
@@ -46,7 +50,8 @@ export default new Router({
       path: "/project/:projectId/edit",
       name: "project-edit",
       component: EditProject
-    },
+    }
+  
   ]
 });
 

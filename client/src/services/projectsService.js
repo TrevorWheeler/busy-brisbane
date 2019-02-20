@@ -1,8 +1,12 @@
 import Api from "@/services/Api";
 
 export default {
-  index() {
-    return Api().get("projects");
+  index(search) {
+    return Api().get("projects", {
+      params: {
+        search: search
+      }
+    });
   },
   show (projectId) {
     return Api().get(`projects/${projectId}`);

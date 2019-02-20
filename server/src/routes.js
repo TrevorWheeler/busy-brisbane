@@ -1,6 +1,6 @@
 const AuthenticationController = require("./controllers/AuthenticationController");
 const AuthenticationControllerPolicy = require("./policies/AuthenticationControllerPolicy");
-const SongsController = require("./controllers/SongsController");
+const SongsController = require("./controllers/ProjectsController");
 
 module.exports = app => {
   app.post(
