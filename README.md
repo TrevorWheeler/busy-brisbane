@@ -1,7 +1,8 @@
-# ceramic-journal
-App to keep track of the ceramic artist process (PostgreSQL, Vue, Node, Express)
+# Busy Brisbane
+A place to find and share activities in Brisbane. (PostgreSQL, Vue, Node, Express)
 
 # START POSTGRESQL
+must have postgresql installed with "busy-brisbane" database created
 $ sudo service postgresql start
 
 # START EXPRESS SERVER FROM `SERVER` DIRECTORY WITH NODEMON

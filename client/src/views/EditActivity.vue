@@ -1,5 +1,5 @@
 <template>
-  <div class="create-project">
+  <div class="create-activity">
     <v-container>
       <v-layout>
         <v-flex
@@ -14,7 +14,7 @@
               class="cyan"
               dark
             >
-              <v-toolbar-title>Edit Project</v-toolbar-title>
+              <v-toolbar-title>Edit Activity</v-toolbar-title>
             </v-toolbar>
 
           </div>
@@ -23,29 +23,23 @@
             label="Title*"
             required
             :rules=[required]
-            v-model="project.title"
+            v-model="activity.title"
+          ></v-text-field>
+
+          <v-text-field
+            type="text"
+            label="Suburb"
+            v-model="activity.suburb"
           ></v-text-field>
 
           <v-text-field
             type="text"
             label="Description"
-            v-model="project.desc"
-          ></v-text-field>
-
-          <v-text-field
-            type="text"
-            label="Clay Type"
-            v-model="project.clay"
-          ></v-text-field>
-
-          <v-text-field
-            type="text"
-            label="Clay Additives"
-            v-model="project.additives"
+            v-model="activity.desc"
           ></v-text-field>
 
           <img
-            :src="project.img"
+            :src="activity.img"
             height="150"
           />
           <v-text-field
@@ -73,7 +67,7 @@
             :disabled="!formIsValid"
             color="primary"
             @click="save"
-          >Save Project</v-btn>
+          >Save Activity</v-btn>
 
         </v-flex>
       </v-layout>
@@ -83,30 +77,16 @@
 </template>
 
 <script>
-import ProjectsService from "@/services/projectsService";
+import ActivitiesService from "@/services/ActivitiesService";
 
 export default {
   data() {
     return {
-      project: {
+      activity: {
         title: null,
         img: null,
-        clay: null,
-        weight: null,
-        additives: null,
-        length: null,
-        height: null,
-        depth: null,
-        slip: null,
-        slipDesc: null,
-        dryStartDate: null,
-        dryEndDate: null,
-        dryConditions: null,
-        bisqueDesc: null,
-        glazeType: null,
-        glazeApplication: null,
-        glazeProcess: null,
-        FiringDesc: null
+        desc: null,
+        suburb: null
       },
 
       imageName: "",
@@ -118,14 +98,14 @@ export default {
   },
   computed: {
     formIsValid() {
-      return this.project.title !== null;
+      return this.activity.title !== null;
     }
   },
 
   async mounted() {
     try {
-      const projectId = this.$store.state.route.params.projectId;
-      this.project = (await ProjectsService.show(projectId)).data;
+      const activityId = this.$store.state.route.params.activityId;
+      this.activity = (await ActivitiesService.show(activityId)).data;
     } catch (err) {
       console.log(err);
     }
@@ -135,13 +115,13 @@ export default {
       if (!this.formIsValid) {
         return;
       }
-       const projectId = this.$store.state.route.params.projectId;
+      const activityId = this.$store.state.route.params.activityId;
       try {
-        await ProjectsService.put(this.project);
+        await ActivitiesService.put(this.activity);
         this.$router.push({
-          name: "project",
+          name: "activity",
           params: {
-            projectId: projectId
+            activityId: activityId
           }
         });
       } catch (err) {
@@ -164,7 +144,7 @@ export default {
         reader.readAsDataURL(files[0]);
         reader.onload = () => {
           console.log(reader.result);
-          this.project.img = reader.result;
+          this.activity.img = reader.result;
         };
         reader.onerror = function(error) {
           console.log("Error: ", error);

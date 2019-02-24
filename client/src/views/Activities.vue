@@ -1,5 +1,5 @@
 <template>
-  <div class="projects">
+  <div class="activities">
     <v-container>
       <v-layout>
         <v-flex
@@ -16,11 +16,11 @@
               class="cyan"
               dark
             >
-              <v-toolbar-title>Projects</v-toolbar-title>
+              <v-toolbar-title>Activities</v-toolbar-title>
             </v-toolbar>
           </div>
           <div
-            v-for="(projects, index) in projects"
+            v-for="(activity, index) in activities"
             :key="index"
           >
             <v-card>
@@ -36,24 +36,23 @@
                     <v-card>
 
                       <v-img
-                        v-if="projects.img !== null"
-                        :src="projects.img"
+                        v-if="activity.img !== null"
+                        :src="activity.img"
+                        @click="navigateTo({ name: 'activity', params: { activityId: activity.id}})"
                       >
                       </v-img>
                       <v-card-actions>
                         <span
-                          class="headline black--text"
-                          v-text="projects.title"
+                          @click="navigateTo({ name: 'activity', params: { activityId: activity.id}})"
+                          class="headline black--text activityTitle"
+                          v-text="activity.title"
                         ></span>
                         <v-spacer></v-spacer>
                         <v-btn
                           icon
-                          @click="navigateTo({ name: 'project', params: { projectId: projects.id}})"
+                          @click="navigateTo({ name: 'activity', params: { activityId: activity.id}})"
                         >
                           <v-icon>remove_red_eye</v-icon>
-                        </v-btn>
-                        <v-btn icon>
-                          <v-icon>favorite</v-icon>
                         </v-btn>
                       </v-card-actions>
                     </v-card>
@@ -72,7 +71,7 @@
       bottom
       right
       fab
-      @click="navigateTo({name: 'projects-create'})"
+      @click="navigateTo({name: 'activities-create'})"
     >
       <v-icon>add</v-icon>
     </v-btn>
@@ -81,20 +80,18 @@
 
 <script>
 import search from "@/components/Search.vue";
-import ProjectsService from "@/services/projectsService";
+import ActivitiesService from "@/services/ActivitiesService";
 
 export default {
   data() {
     return {
-      projects: null
+      activities: null
     };
   },
   components: {
     search
   },
-  // async mounted() {
-  //   this.projects = (await ProjectsService.index()).data;
-  // },
+
   methods: {
     navigateTo(route) {
       this.$router.push(route);
@@ -104,8 +101,8 @@ export default {
   watch: {
     "$route.query.search": {
       immediate: true,
-      async handler (value) {
-        this.projects = (await ProjectsService.index(value)).data
+      async handler(value) {
+        this.activities = (await ActivitiesService.index(value)).data;
       }
     }
   }
@@ -113,4 +110,11 @@ export default {
 </script>
 
 <style>
+.v-responsive__content {
+  cursor: pointer;
+}
+
+.activityTitle {
+  cursor: pointer;
+}
 </style>

@@ -1,15 +1,25 @@
 <template>
   <div class="home">
-    <v-container>
+    <v-container class="intro">
       <v-layout>
         <v-flex
           xs12
           sm6
           offset-sm3
         >
-          <h1> Welcome to Ceramic Journal </h1>
-          <p> Please <router-link to="/register"> register </router-link> or <router-link to="/login"> login.</router-link>
-          </p>
+          <h1 class="text-xs-center"> Welcome to Busy Brisbane. </h1>
+          <h2 class="text-xs-center">A place to find and share activities in Brisbane.</h2>
+          <div class="intro-links mt-2">
+            <div class="content">
+              <router-link to="/login">
+                <v-btn color="success">login.</v-btn>
+              </router-link>
+              <router-link to="/register">
+                <v-btn color="info">register </v-btn>
+              </router-link>
+
+            </div>
+          </div>
         </v-flex>
       </v-layout>
     </v-container>
@@ -24,5 +34,12 @@ export default {
 </script>
 
 <style lang="scss">
+.intro-links {
+  display: flex;
+  justify-content: center;
+}
+a {
+  text-decoration: none;
+}
 </style>
 

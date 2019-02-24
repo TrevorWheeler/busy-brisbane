@@ -11,21 +11,18 @@
         dense
       >
         <v-divider light></v-divider>
-        <v-list-tile
-          @click="navigateTo({name: 'projects'})"
-          v-if="!$store.state.isUserLoggedIn"
-        >
+        <v-list-tile @click="navigateTo({name: 'activities'})">
           <v-list-tile-content>
-            <v-list-tile-title>Projects</v-list-tile-title>
+            <v-list-tile-title>activities</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
 
         <v-list-tile
-          @click="navigateTo({name: 'projects-create'})"
-          v-if="!$store.state.isUserLoggedIn"
+          @click="navigateTo({name: 'activities-create'})"
+          v-if="$store.state.isUserLoggedIn"
         >
           <v-list-tile-content>
-            <v-list-tile-title>+ project</v-list-tile-title>
+            <v-list-tile-title>+ activity</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile
@@ -62,8 +59,8 @@
         class="headline text-uppercase brand"
         @click="navigateTo({name: 'home'})"
       >
-        <span>Ceramic</span>
-        <span class="font-weight-light">Journal</span>
+        <span>Busy</span>
+        <span class="font-weight-light">Brisbane</span>
 
       </v-toolbar-title>
 
@@ -73,17 +70,17 @@
           v-if="$store.state.isUserLoggedIn"
           class="hidden-sm-and-down"
           flat
-          @click="navigateTo({name: 'projects-create'})"
+          @click="navigateTo({name: 'activities-create'})"
         >
-          <span>+ project</span>
+          <span>+ activity</span>
         </v-btn>
         <v-btn
           v-if="$store.state.isUserLoggedIn"
           class="hidden-sm-and-down"
           flat
-          @click="navigateTo({name: 'projects'})"
+          @click="navigateTo({name: 'activities'})"
         >
-          <span>My Projects</span>
+          <span>Activities</span>
         </v-btn>
         <v-btn
           v-if="!$store.state.isUserLoggedIn"
@@ -99,7 +96,7 @@
           flat
           @click="navigateTo({name: 'register'})"
         >
-          <span>Sign Up</span>
+          <span>Register</span>
         </v-btn>
         <v-btn
           v-if="$store.state.isUserLoggedIn"

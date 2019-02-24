@@ -1,20 +1,16 @@
-const AuthenticationController = require("./controllers/AuthenticationController");
-const AuthenticationControllerPolicy = require("./policies/AuthenticationControllerPolicy");
-const SongsController = require("./controllers/ProjectsController");
+const AuthenticationController = require('./controllers/AuthenticationController');
+const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy');
+const ActivitiesController = require('./controllers/ActivitiesController');
 
-module.exports = app => {
-  app.post(
-    "/register",
-    AuthenticationControllerPolicy.register,
-    AuthenticationController.register
-  );
+module.exports = (app) => {
+	app.post('/register', AuthenticationControllerPolicy.register, AuthenticationController.register);
 
-  app.post("/login", AuthenticationController.login);
+	app.post('/login', AuthenticationController.login);
 
-  app.get("/projects", SongsController.index);
+	app.get('/activities', ActivitiesController.index);
 
-  app.get("/projects/:projectId", SongsController.show);
-  
-  app.post("/projects", SongsController.post);
-  app.put("/projects/:songId", SongsController.put);
+	app.get('/activities/:activityId', ActivitiesController.show);
+
+	app.post('/activities', ActivitiesController.post);
+	app.put('/activities/:activityId', ActivitiesController.put);
 };

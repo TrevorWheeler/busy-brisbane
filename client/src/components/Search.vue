@@ -1,26 +1,28 @@
 <template>
-<div>
+  <div>
     <div class="white elevation-2">
 
-            <v-toolbar
-              flat
-              dense
-              class="cyan"
-              dark
-            >
-              <v-toolbar-title>Search</v-toolbar-title>
-            </v-toolbar>
-          </div>
+      <v-toolbar
+        flat
+        dense
+        class="cyan"
+        dark
+      >
+        <v-toolbar-title>Search</v-toolbar-title>
+      </v-toolbar>
+    </div>
 
-           
-    <v-text-field label="Search for project" v-model="search">
+    <v-text-field
+      label="Search for activity"
+      v-model="search"
+    >
     </v-text-field>
 
-</div>
+  </div>
 </template>
 
 <script>
-import _ from "lodash"
+import _ from "lodash";
 export default {
   data() {
     return {
@@ -28,25 +30,24 @@ export default {
     };
   },
   watch: {
-
     //use lodash debounce to wait 700ms before search query is sent
     search: _.debounce(async function(value) {
       const route = {
-        name: 'projects'
-      }
+        name: "activities"
+      };
       if (this.search !== "") {
         route.query = {
           search: this.search
-        }
+        };
       }
-      this.$router.push(route)
+      this.$router.push(route);
     }, 700),
 
     // push url query to text field on page refresh
-    '$route.query.search': {
+    "$route.query.search": {
       immediate: true,
-      handler (value) {
-        this.search = value
+      handler(value) {
+        this.search = value;
       }
     }
   }

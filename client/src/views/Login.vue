@@ -31,7 +31,7 @@
                       v-model="email"
                     ></v-text-field>
                     <v-text-field
-                    type="password"
+                      type="password"
                       label="Password"
                       v-model="password"
                     ></v-text-field>
@@ -74,15 +74,15 @@ export default {
   methods: {
     async login() {
       try {
-       const response = await AuthenticationService.login({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password
         });
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
-         this.$router.push({
-          name: 'projects'
-        })
+        this.$store.dispatch("setToken", response.data.token);
+        this.$store.dispatch("setUser", response.data.user);
+        this.$router.push({
+          name: "activities"
+        });
       } catch (error) {
         this.error = error.response.data.error;
       }

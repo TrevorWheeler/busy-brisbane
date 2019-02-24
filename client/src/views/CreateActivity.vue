@@ -1,5 +1,5 @@
 <template>
-  <div class="create-project">
+  <div class="create-activity">
     <v-container>
       <v-layout>
         <v-flex
@@ -14,7 +14,7 @@
               class="cyan"
               dark
             >
-              <v-toolbar-title>Create Project</v-toolbar-title>
+              <v-toolbar-title>Create Activity</v-toolbar-title>
             </v-toolbar>
 
           </div>
@@ -23,29 +23,23 @@
             label="Title*"
             required
             :rules=[required]
-            v-model="project.title"
+            v-model="activity.title"
+          ></v-text-field>
+
+          <v-text-field
+            type="text"
+            label="Suburb"
+            v-model="activity.suburb"
           ></v-text-field>
 
           <v-text-field
             type="text"
             label="Description"
-            v-model="project.desc"
-          ></v-text-field>
-
-          <v-text-field
-            type="text"
-            label="Clay Type"
-            v-model="project.clay"
-          ></v-text-field>
-
-          <v-text-field
-            type="text"
-            label="Clay Additives"
-            v-model="project.additives"
+            v-model="activity.desc"
           ></v-text-field>
 
           <img
-            :src="project.img"
+            :src="activity.img"
             height="150"
           />
           <v-text-field
@@ -61,7 +55,7 @@
             accept="image/*"
             @change="onFilePicked"
           >
- 
+
           <v-alert
             :value="error"
             type="error"
@@ -70,7 +64,7 @@
           >{{error}}
           </v-alert>
           <v-btn
-          :disabled="!formIsValid"
+            :disabled="!formIsValid"
             color="primary"
             @click="create"
           >Create</v-btn>
@@ -83,30 +77,16 @@
 </template>
 
 <script>
-import ProjectsService from "@/services/projectsService";
+import ActivitiesService from "@/services/ActivitiesService";
 
 export default {
   data() {
     return {
-      project: {
+      activity: {
         title: null,
         img: null,
-        clay: null,
-        weight: null,
-        additives: null,
-        length: null,
-        height: null,
-        depth: null,
-        slip: null,
-        slipDesc: null,
-        dryStartDate: null,
-        dryEndDate: null,
-        dryConditions: null,
-        bisqueDesc: null,
-        glazeType: null,
-        glazeApplication: null,
-        glazeProcess: null,
-        FiringDesc: null
+        desc: null,
+        suburb: null
       },
 
       imageName: "",
@@ -116,18 +96,20 @@ export default {
       required: value => !!value || "Required."
     };
   },
-      computed: {
-        formIsValid() {
-            return this.project.title !== null 
-        },
-    },
+  computed: {
+    formIsValid() {
+      return this.activity.title !== null;
+    }
+  },
   methods: {
     async create() {
-      if (!this.formIsValid) {return}
+      if (!this.formIsValid) {
+        return;
+      }
       try {
-        await ProjectsService.post(this.project);
+        await ActivitiesService.post(this.activity);
         this.$router.push({
-          name: "projects"
+          name: "activities"
         });
       } catch (err) {
         console.log(err);
@@ -149,7 +131,7 @@ export default {
         reader.readAsDataURL(files[0]);
         reader.onload = () => {
           console.log(reader.result);
-          this.project.img = reader.result;
+          this.activity.img = reader.result;
         };
         reader.onerror = function(error) {
           console.log("Error: ", error);

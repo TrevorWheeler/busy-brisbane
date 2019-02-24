@@ -1,5 +1,5 @@
 <template>
-  <div class="project">
+  <div class="activity">
     <v-container>
       <v-layout>
         <v-flex
@@ -14,7 +14,7 @@
               class="cyan"
               dark
             >
-              <v-toolbar-title>{{project.title}}</v-toolbar-title>
+              <v-toolbar-title>{{activity.title}}</v-toolbar-title>
             </v-toolbar>
           </div>
 
@@ -29,28 +29,18 @@
               >
                 <v-flex>
 
-             
-
                   <v-card class="mb-2">
                     <v-img
-                      v-if="project.img !== null"
-                      :src="project.img"
+                      v-if="activity.img !== null"
+                      :src="activity.img"
                     >
                     </v-img>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn icon>
-                        <v-icon>favorite</v-icon>
-                      </v-btn>
-                    </v-card-actions>
                   </v-card>
                   <v-container>
-                  <h3 >Description</h3>
-                  <p>{{project.desc}}</p>
-                   <h3 >Clay Type</h3>
-                  <p>{{project.desc}}</p>
-                   <h3 >Clay Additives</h3>
-                  <p>{{project.desc}}</p>
+                    <h3>Suburb</h3>
+                    <p>{{activity.suburb}}</p>
+                    <h3>Description</h3>
+                    <p>{{activity.desc}}</p>
                   </v-container>
                 </v-flex>
               </v-layout>
@@ -67,7 +57,7 @@
       bottom
       right
       fab
-      @click="navigateTo({name: 'project-edit', params: {projectId: project.id}})"
+      @click="navigateTo({name: 'activity-edit', params: {activityId: activity.id}})"
     >
       <v-icon>edit</v-icon>
     </v-btn>
@@ -75,21 +65,21 @@
 </template>
 
 <script>
-import ProjectsService from "@/services/projectsService";
+import ActivitiesService from "@/services/ActivitiesService";
 export default {
   data() {
     return {
-      project: {}
+      activity: {}
     };
   },
   methods: {
-    navigateTo (route) {
-      this.$router.push(route) 
+    navigateTo(route) {
+      this.$router.push(route);
     }
   },
   async mounted() {
-    const projectId = this.$store.state.route.params.projectId;
-    this.project = (await ProjectsService.show(projectId)).data;
+    const activityId = this.$store.state.route.params.activityId;
+    this.activity = (await ActivitiesService.show(activityId)).data;
   }
 };
 </script>
