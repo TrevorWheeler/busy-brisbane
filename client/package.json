@@ -5,12 +5,14 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "now-build": "npm run build"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "image-to-base64": "^2.0.1",
     "lodash": "^4.17.11",
+    "now-env": "^3.1.0",
     "vue": "^2.5.22",
     "vue-file-base64": "^1.0.2",
     "vue-router": "^3.0.1",

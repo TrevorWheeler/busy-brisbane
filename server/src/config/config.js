@@ -1,12 +1,13 @@
+
 module.exports = {
 	port: process.env.PORT || 8081,
 	db: {
-		database: process.env.DB_NAME || 'busy-brisbane',
-		user: process.env.DB_USER || 'postgres',
+		database: process.env.DB_NAME || 'vexlpscv',
+		user: process.env.DB_USER || 'vexlpscv',
 		password: process.env.DB_PASS || 'password',
 		options: {
 			dialect: process.env.DIALECT || 'postgres',
-			host: process.env.HOST || 'localhost',
+			host: process.env.HOST || 'isilo.db.elephantsql.com',
 			operatorsAliases: false
 		}
 	},
