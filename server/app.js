@@ -8,7 +8,7 @@ const config = require('./config/config');
 const app = express();
 
 app.use(morgan('combined'));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '3mb' }));
 app.use(cors());
 
 require('./routes')(app);
