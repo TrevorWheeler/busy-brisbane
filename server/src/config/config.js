@@ -1,17 +1,17 @@
 module.exports = {
 	port: process.env.PORT || 8081,
 	db: {
-		database: process.env.DB_NAME || 'busy-brisbane',
-		user: process.env.DB_USER || 'postgres',
-		password: process.env.DB_PASS || 'password',
+		database: process.env.DB_NAME,
+		user: process.env.DB_USER,
+		password: process.env.DB_PASS,
 		options: {
-			dialect: process.env.DIALECT || 'postgres',
-			host: process.env.HOST || 'localhost',
+			dialect: process.env.DIALECT,
+			host: process.env.HOST,
 			operatorsAliases: false
 		}
 	},
 
 	authentication: {
-		jwtSecret: process.env.JWT_SECRET || 'secret'
+		jwtSecret: process.env.JWT_SECRET
 	}
 };
