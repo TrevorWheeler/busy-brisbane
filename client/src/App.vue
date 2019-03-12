@@ -75,7 +75,6 @@
           <span>+ activity</span>
         </v-btn>
         <v-btn
-          v-if="$store.state.isUserLoggedIn"
           class="hidden-sm-and-down"
           flat
           @click="navigateTo({name: 'activities'})"
@@ -144,13 +143,6 @@ export default {
   }
 };
 </script>
-
-
-
-
-
-
-
 
 <style lang="scss">
 .brand {
