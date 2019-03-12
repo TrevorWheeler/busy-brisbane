@@ -1,5 +1,5 @@
 # Busy Brisbane
-A place to find and share activities in Brisbane.
+A place to find and share activities in Brisbane. Users can view and create accounts to list their own activities.
 
 ###### Stack
 Node, Vue, Express, PostgreSQL
